@@ -1,0 +1,22 @@
+{
+  "sellerId": "USBL",
+  "productId": "100",
+  "data": {
+    "name": "Peanut Butter",
+    "details": {
+      "weight": "10 oz",
+      "description": "It is good on bread."
+    },
+    "nutrition": {
+      "servingSize": "1 oz",
+      "calories": "100",
+      "allergens": [
+        "nuts",
+        "fish"
+      ]
+    }
+  },
+  "errors": [{
+
+  }]
+}

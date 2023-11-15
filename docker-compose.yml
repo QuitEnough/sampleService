@@ -1,0 +1,38 @@
+services:
+  app:
+    image: gradle:7.6.0-jdk17-alpine
+    command: sh -c "./gradlew bootRun"
+    container_name: app
+    ports:
+      - 8080:8080
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/sampleService
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: secret
+      FLYWAY_USER: admin
+      FLYWAY_PASSWORD: secret
+      FLYWAY_SCHEMAS: sampleService
+    networks:
+      - default
+    depends_on:
+      - db  
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    ports:
+      - 8888:5432
+    volumes: 
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: admin
+      POSTGRES_DB: sampleService
+
+volumes:
+  db:
+    driver: local
